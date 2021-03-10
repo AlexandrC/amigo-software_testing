@@ -1,5 +1,6 @@
 package com.amigoscode.testing.costumer;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,8 +12,12 @@ import javax.validation.Valid;
 @RequestMapping("api/v1/costumer-registration")
 public class CustumerRegistrationControlller {
 
+    @Autowired
+    private CustomerRegistrationService customerRegistrationService;
+
     @PutMapping
     public void registerNewCostumer(@Valid @RequestBody CustumerRegistrationRequest request){
+        customerRegistrationService.registerNewCustomer(request);
 
     }
 }
