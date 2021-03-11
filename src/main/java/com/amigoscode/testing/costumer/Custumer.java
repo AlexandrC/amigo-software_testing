@@ -1,18 +1,26 @@
 package com.amigoscode.testing.costumer;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.lang.NonNull;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import java.util.UUID;
 
 @Entity
+@JsonIgnoreProperties(value = {"id"},allowGetters = true)
 public class Custumer {
 
     @Id
     private UUID id;
     @NotBlank
+    @NonNull
+    @Column(nullable = false)
     private String name;
     @NotBlank
+    @Column(nullable = false,unique = true)
     private String phoneNumber;
 
     public Custumer(UUID id, String name, String phoneNumber) {
